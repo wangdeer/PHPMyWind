@@ -7,7 +7,7 @@
 */
 
 //数据库服务器
-$db_host = 'localhost';
+$db_host = 'mysql';
 
 //数据库用户名
 $db_user = 'root';

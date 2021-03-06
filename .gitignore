@@ -37,3 +37,14 @@ tags
 .php_cs.cache
 
 php-cs-fixer
+
+/uploads/image/*
+!/uploads/image/index.htm
+
+/data/sessions/*
+!/data/sessions/index.htm
+
+/data/error/*
+!/data/error/index.htm
+
+/data/install_lock.txt

@@ -1,7 +1,7 @@
 <?php	if(!defined('IN_PHPMYWIND')) exit('Request Error!');
 
 $cfg_webname = '我的网站';
-$cfg_weburl = 'http://phpmywind.net';
+$cfg_weburl = 'http://pmw.test';
 $cfg_webpath = '';
 $cfg_author = '';
 $cfg_generator = 'PHPMyWind CMS';
@@ -49,7 +49,7 @@ $cfg_reurl_goods = '{goods}-{cid}-{tid}-{page}.html';
 $cfg_reurl_goodsshow = '{goodsshow}-{cid}-{tid}-{id}-{page}.html';
 $cfg_reurl_vote = '{vote}-{id}.html';
 $cfg_reurl_custom = '{file}.html';
-$cfg_auth_key = 'NuBqmzks62svgdJ7';
+$cfg_auth_key = 'acjoYR1bJPQiI2kJ';
 $cfg_alipay_uname = '';
 $cfg_alipay_partner = '';
 $cfg_alipay_key = '';
