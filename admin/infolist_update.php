@@ -6,13 +6,15 @@
 <title>修改列表信息</title>
 <link href="templates/style/admin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="templates/js/jquery.min.js"></script>
-<script type="text/javascript" src="templates/js/getuploadify.js"></script>
+<!-- <script type="text/javascript" src="templates/js/getuploadify.js"></script> -->
+<script type="text/javascript" src="templates/js/getwebuploader.js"></script>
 <script type="text/javascript" src="templates/js/checkf.func.js"></script>
 <script type="text/javascript" src="templates/js/getjcrop.js"></script>
 <script type="text/javascript" src="templates/js/getinfosrc.js"></script>
 <script type="text/javascript" src="plugin/colorpicker/colorpicker.js"></script>
 <script type="text/javascript" src="plugin/calendar/calendar.js"></script>
-<script type="text/javascript" src="editor/kindeditor-min.js"></script>
+<!-- <script type="text/javascript" src="editor/kindeditor-min.js"></script> -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
 <script type="text/javascript" src="editor/lang/zh_CN.js"></script>
 </head>
 <body>
@@ -133,8 +135,32 @@ $row = $dosql->GetOne("SELECT * FROM `#@__infolist` WHERE `id`=$id");
 		</tr>
 		<tr>
 			<td height="340" align="right">详细内容：</td>
-			<td><textarea name="content" id="content" class="kindeditor"><?php echo $row['content']; ?></textarea>
-				<script>
+			<td>
+				<div id='wangEditor'>
+					<?php echo $row['content']; ?>
+				</div>
+				<textarea name="content" id="content" style="display:none"></textarea>
+				<script type="text/javascript">
+					const E = window.wangEditor
+					const editor = new E('#wangEditor')
+					const $content = $('#content')
+					
+					editor.config.onchange = function (html) {
+						// 第二步，监控变化，同步更新到 textarea
+						$content.val(html)
+					}
+
+					// 配置 server 接口地址
+					editor.config.uploadImgServer = 'editor/wangeditor/upload_json.php'
+
+					editor.config.uploadFileName = 'imgFile'
+
+					editor.create()
+
+					// 第一步，初始化 textarea 的值
+					$content.val(editor.txt.html())
+				</script>
+				<!-- <script>
 				var editor;
 				KindEditor.ready(function(K) {
 					editor = K.create('textarea[name="content"]', {
@@ -146,7 +172,7 @@ $row = $dosql->GetOne("SELECT * FROM `#@__infolist` WHERE `id`=$id");
 						}
 					});
 				});
-				</script>
+				</script> -->
 				<div class="editToolbar">
 					<input type="checkbox" name="remote" id="remote" value="true" />
 					下载远程图片和资源
